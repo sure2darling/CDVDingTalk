@@ -4,8 +4,8 @@ var exports = {
     coolMethod : function (arg0, success, error) {
         exec(success, error, 'CDVDingTalk', 'coolMethod', [arg0]);
     },
-    registerAppDingTalk: function (arg0, success, error) {
-        exec(success, error, 'CDVDingTalk', 'registerAppDingTalk', [arg0]);
+    registerDingTalk: function (arg0, success, error) {
+        exec(success, error, 'CDVDingTalk', 'registerDingTalk', [arg0]);
     },
 
     openDingTalk: function (arg0, success, error) {

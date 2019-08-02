@@ -8,6 +8,7 @@
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)registerDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)shareTextToDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)shareImageToDingTalk:(CDVInvokedUrlCommand*)command;
@@ -23,9 +24,10 @@
 }
 
 
-- (void)registerAppDingTalk
+- (void)registerDingTalk:(CDVInvokedUrlCommand*)command
 {
    [DTOpenAPI registerApp:@"dingoak5hqhuvmpfhpnjvt"];
+   return YES;
 }
 
 

@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>CDVDingTalk</name>
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
-        <clobbers target="cordova.plugins.CDVDingTalk"/>
+        <clobbers target="CDVDingTalk"/>
     </js-module>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">

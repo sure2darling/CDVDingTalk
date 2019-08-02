@@ -1,0 +1,19 @@
+{
+  "name": "cdvdingtalk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "n",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sure2darling/CDVDingTalk.git"
+  },
+  "author": "jsure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sure2darling/CDVDingTalk/issues"
+  },
+  "homepage": "https://github.com/sure2darling/CDVDingTalk#readme"
+}

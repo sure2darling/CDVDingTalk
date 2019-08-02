@@ -12,5 +12,6 @@
             </feature>
         </config-file>
         <source-file src="src/ios/CDVDingTalk.m"/>
+        <framework src="src/ios/DTShareKit.framework" custom="true" />
     </platform>
 </plugin>

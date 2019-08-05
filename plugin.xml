@@ -11,6 +11,13 @@
                 <param name="ios-package" value="CDVDingTalk"/>
             </feature>
         </config-file>
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>dingtalk</string>
+                <string>dingtalk-open</string>
+                <string>dingtalk-sso</string>
+            </array>
+        </config-file>
         <source-file src="src/ios/CDVDingTalk.m"/>
         <framework src="src/ios/DTShareKit.framework" custom="true" />
     </platform>

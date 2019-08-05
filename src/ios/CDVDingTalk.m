@@ -18,18 +18,9 @@
 
 @implementation CDVDingTalk
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
-{
-    NSLog(@"消息测试-----");
+- (void)pluginInitialize {
+    [DTOpenAPI registerApp:@"dingoak5hqhuvmpfhpnjvt"];
 }
-
-
-- (void)registerDingTalk:(CDVInvokedUrlCommand*)command
-{
-   [DTOpenAPI registerApp:@"dingoak5hqhuvmpfhpnjvt"];
-   return YES;
-}
-
 
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command
 {

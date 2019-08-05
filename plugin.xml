@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.demo.cdvDingtalk" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="cordova-plugin-dingtalk" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>CDVDingTalk</name>
+    <name>cordova-plugin-dingtalk</name>
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
         <clobbers target="CDVDingTalk"/>
     </js-module>

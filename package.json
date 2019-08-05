@@ -1,5 +1,5 @@
 {
-  "name": "cdvdingtalk",
+  "name": "cordova-plugin-dingtalk",
   "version": "1.0.0",
   "description": "",
   "main": "n",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sure2darling/CDVDingTalk.git"
+    "url": "git+https://github.com/sure2darling/cordova-plugin-dingtalk.git"
   },
   "author": "jsure",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sure2darling/CDVDingTalk/issues"
+    "url": "https://github.com/sure2darling/cordova-plugin-dingtalk/issues"
   },
-  "homepage": "https://github.com/sure2darling/CDVDingTalk#readme"
+  "homepage": "https://github.com/sure2darling/cordova-plugin-dingtalk#readme"
 }

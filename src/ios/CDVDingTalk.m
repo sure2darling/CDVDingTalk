@@ -20,6 +20,10 @@
 
 - (void)pluginInitialize {
     [DTOpenAPI registerApp:@"dingoak5hqhuvmpfhpnjvt"];
+     NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingoak5hqhuvmpfhpnjvt"];
+        if (appId){
+            [DTOpenAPI registerApp: appId];
+        }
 }
 
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command

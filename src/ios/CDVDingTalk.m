@@ -113,8 +113,8 @@
 - (void)ssoWithDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTAuthorizeReq *authReq = [DTAuthorizeReq new];
-
-    authReq.bundleId = @"dingoak5hqhuvmpfhpnjvt";
+    NSString *bundlID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    authReq.bundleId = bundlID;
     BOOL result = [DTOpenAPI sendReq:authReq];
     if (result) {
         NSLog(@"授权登录 发送成功.");

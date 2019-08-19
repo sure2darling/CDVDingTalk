@@ -1,37 +1,24 @@
 /********* CDVDingTalk.m Cordova Plugin Implementation *******/
 
-#import <Cordova/CDV.h>
-#import <DTShareKit/DTOpenKit.h>
-
-@interface CDVDingTalk : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
-- (void)registerDingTalk:(CDVInvokedUrlCommand*)command;
-- (void)openDingTalk:(CDVInvokedUrlCommand*)command;
-- (void)shareTextToDingTalk:(CDVInvokedUrlCommand*)command;
-- (void)shareImageToDingTalk:(CDVInvokedUrlCommand*)command;
-- (void)shareWebToDingTalk:(CDVInvokedUrlCommand*)command;
-- (void)ssoWithDingTalk:(CDVInvokedUrlCommand*)command;
-@end
+#import "CDVDingTalk.h"
 
 @implementation CDVDingTalk
 
+// 初始化插件注册
 - (void)pluginInitialize {
-    [DTOpenAPI registerApp:@"dingoak5hqhuvmpfhpnjvt"];
-     NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingoak5hqhuvmpfhpnjvt"];
+    [DTOpenAPI registerApp:@"dingoallfvu56vmxbf8dgn"];
+     NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingoallfvu56vmxbf8dgn"];
         if (appId){
             [DTOpenAPI registerApp: appId];
         }
 }
-
+// 打开钉钉
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command
 {
     NSLog(@"openDingTalk: %@", @([DTOpenAPI openDingTalk]));
 }
 
-
+// 分享
 - (void)shareTextToDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTSendMessageToDingTalkReq *sendMessageReq = [[DTSendMessageToDingTalkReq alloc] init];
@@ -55,6 +42,7 @@
     }
 }
 
+// 分享图片
 - (void)shareImageToDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTSendMessageToDingTalkReq *sendMessageReq = [[DTSendMessageToDingTalkReq alloc] init];
@@ -79,6 +67,7 @@
     }
 }
 
+// 分享网址
 - (void)shareWebToDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTSendMessageToDingTalkReq *sendMessageReq = [[DTSendMessageToDingTalkReq alloc] init];
@@ -109,7 +98,7 @@
     }
 }
 
-
+// 第三方登录
 - (void)ssoWithDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTAuthorizeReq *authReq = [DTAuthorizeReq new];
@@ -124,5 +113,21 @@
     }
 }
 
+- (void)onReq:(DTBaseReq *)req {
+     NSLog(@"-------------------%@", req);
+}
+
+- (void)onResp:(DTBaseResp *)resp {
+    NSLog(@"1---------------------------------------111");
+    if ([resp isKindOfClass:[DTAuthorizeResp class]]) {
+        DTAuthorizeResp *authResp = (DTAuthorizeResp *)resp;
+        NSString *accessCode = authResp.accessCode;
+        NSLog(@"accessCode: %@, errorCode: %@, errorMsg: %@", accessCode, @(resp.errorCode), resp.errorMessage);
+    }
+    else {
+        NSLog(@"ErrorCode: %@", @(resp.errorCode));
+        NSLog(@"ErrorMsg: %@", resp.errorMessage);
+    }
+}
 
 @end

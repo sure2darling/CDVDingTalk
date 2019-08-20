@@ -3,7 +3,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-dingtalk</name>
     <preference name="DINGTALKAPPID" />
-
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
         <clobbers target="CDVDingTalk"/>
     </js-module>

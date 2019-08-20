@@ -44,5 +44,13 @@
         <header-file src="src/ios/CDVDingTalk.h"/>
         <source-file src="src/ios/CDVDingTalk.m"/>
         <framework src="src/ios/DTShareKit.framework" custom="true" />
+
+        <framework src="libz.tbd" />
+        <framework src="libsqlite3.0.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="CFNetwork.framework" />
+        <framework src="libstdc++.6.tbd" />
     </platform>
 </plugin>

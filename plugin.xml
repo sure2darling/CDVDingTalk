@@ -2,6 +2,7 @@
 <plugin id="cordova-plugin-dingtalk" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-dingtalk</name>
+    <preference name="DINGTALKAPPID" />
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
         <clobbers target="CDVDingTalk"/>
     </js-module>
@@ -11,6 +12,7 @@
                 <param name="ios-package" value="CDVDingTalk"/>
                 <param name="onload" value="true" />
             </feature>
+            <preference name="DINGTALKAPPID" value="$DINGTALKAPPID"/>
         </config-file>
 
         <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
@@ -33,7 +35,7 @@
                     <string>dingtalk</string>
                     <key>CFBundleURLSchemes</key>
                     <array>
-                        <string>dingoallfvu56vmxbf8dgn</string>
+                        <string>$DINGTALKAPPID</string>
                     </array>
                 </dict>
             </array>
@@ -42,5 +44,13 @@
         <header-file src="src/ios/CDVDingTalk.h"/>
         <source-file src="src/ios/CDVDingTalk.m"/>
         <framework src="src/ios/DTShareKit.framework" custom="true" />
+
+        <framework src="libz.tbd" />
+        <framework src="libsqlite3.0.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="CFNetwork.framework" />
+        <framework src="libstdc++.6.tbd" />
     </platform>
 </plugin>

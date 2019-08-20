@@ -4,8 +4,11 @@
 #import <DTShareKit/DTOpenKit.h>
 
 @interface CDVDingTalk:CDVPlugin <DTOpenAPIDelegate> {
-  // Member variables go here.
 }
+
+@property (nonatomic, strong) NSString *currentCallbackId;
+@property (nonatomic, strong) NSString *dingtalkAppId;
+  // Member variables go here.
 - (void)registerDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)shareTextToDingTalk:(CDVInvokedUrlCommand*)command;

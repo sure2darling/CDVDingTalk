@@ -7,10 +7,6 @@
 // 初始化插件注册
 - (void)pluginInitialize {
     [DTOpenAPI registerApp:@"dingoallfvu56vmxbf8dgn"];
-     NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingoallfvu56vmxbf8dgn"];
-        if (appId){
-            [DTOpenAPI registerApp: appId];
-        }
 }
 // 打开钉钉
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command
@@ -110,6 +106,18 @@
     }
     else {
         NSLog(@"授权登录 发送失败.");
+    }
+}
+
+- (void)handleOpenURL:(NSNotification *)notification
+{
+    NSLog(@"打开URL==========");
+    NSURL* url = [notification object];
+    NSLog(@"11111  %@",url);
+    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:@"dingoallfvu56vmxbf8dgn"])
+    {
+        NSLog(@"222222  %@",[DTOpenAPI handleOpenURL:url delegate:self]?@"YES":@"NO");
+//        [DTOpenAPI handleOpenURL:url delegate:self];
     }
 }
 

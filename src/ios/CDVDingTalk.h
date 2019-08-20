@@ -6,8 +6,6 @@
 @interface CDVDingTalk:CDVPlugin <DTOpenAPIDelegate> {
   // Member variables go here.
 }
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
 - (void)registerDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command;
 - (void)shareTextToDingTalk:(CDVInvokedUrlCommand*)command;

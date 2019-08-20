@@ -2,9 +2,11 @@
 <plugin id="cordova-plugin-dingtalk" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-dingtalk</name>
+
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
         <clobbers target="CDVDingTalk"/>
     </js-module>
+
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
             <feature name="CDVDingTalk">
@@ -20,15 +22,19 @@
                 <string>dingtalk-sso</string>
             </array>
         </config-file>
+
         <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
             <dict>
                 <key>NSAllowsArbitraryLoads</key>
                 <true/>
             </dict>
         </config-file>
+
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
             <array>
                 <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
                     <key>CFBundleURLName</key>
                     <string>dingtalk</string>
                     <key>CFBundleURLSchemes</key>
@@ -41,6 +47,6 @@
 
         <header-file src="src/ios/CDVDingTalk.h"/>
         <source-file src="src/ios/CDVDingTalk.m"/>
-        <framework src="src/ios/DTShareKit.framework" custom="true" />
+        <framework src="src/ios/DTShareKit.framework" custom="true"  framework="true"/>
     </platform>
 </plugin>

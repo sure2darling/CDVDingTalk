@@ -6,7 +6,12 @@
 
 // 初始化插件注册
 - (void)pluginInitialize {
-    [DTOpenAPI registerApp:@"dingoallfvu56vmxbf8dgn"];
+    NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingtalkappid"];
+    NSLog(@"openDingTalk: %@", appId);
+    if (appId){
+        self.dingtalkAppId = appId;
+        [DTOpenAPI registerApp: appId];
+    }
 }
 // 打开钉钉
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command
@@ -98,13 +103,19 @@
 - (void)ssoWithDingTalk:(CDVInvokedUrlCommand*)command
 {
     DTAuthorizeReq *authReq = [DTAuthorizeReq new];
+
     NSString *bundlID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+
     authReq.bundleId = bundlID;
+
     BOOL result = [DTOpenAPI sendReq:authReq];
+
     if (result) {
+        self.currentCallbackId = command.callbackId;
         NSLog(@"授权登录 发送成功.");
     }
     else {
+        [self failWithCallbackID:command.callbackId withMessage:@"发送请求失败"];
         NSLog(@"授权登录 发送失败.");
     }
 }
@@ -114,15 +125,14 @@
     NSLog(@"打开URL==========");
     NSURL* url = [notification object];
     NSLog(@"11111  %@",url);
-    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString:@"dingoallfvu56vmxbf8dgn"])
+    if ([url isKindOfClass:[NSURL class]] && [url.scheme isEqualToString: self.dingtalkAppId])
     {
-        NSLog(@"222222  %@",[DTOpenAPI handleOpenURL:url delegate:self]?@"YES":@"NO");
-//        [DTOpenAPI handleOpenURL:url delegate:self];
+        [DTOpenAPI handleOpenURL:url delegate:self];
     }
 }
 
 - (void)onReq:(DTBaseReq *)req {
-     NSLog(@"-------------------%@", req);
+    NSLog(@"-------------------%@", req);
 }
 
 - (void)onResp:(DTBaseResp *)resp {
@@ -131,11 +141,40 @@
         DTAuthorizeResp *authResp = (DTAuthorizeResp *)resp;
         NSString *accessCode = authResp.accessCode;
         NSLog(@"accessCode: %@, errorCode: %@, errorMsg: %@", accessCode, @(resp.errorCode), resp.errorMessage);
+
+        CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:accessCode];
+
+        [self.commandDelegate sendPluginResult:commandResult callbackId:self.currentCallbackId];
     }
     else {
         NSLog(@"ErrorCode: %@", @(resp.errorCode));
         NSLog(@"ErrorMsg: %@", resp.errorMessage);
+        [self failWithCallbackID:self.currentCallbackId withMessage:resp.errorMessage];
     }
 }
+
+
+- (void)successWithCallbackID:(NSString *)callbackID
+{
+    [self successWithCallbackID:callbackID withMessage:@"OK"];
+}
+
+- (void)successWithCallbackID:(NSString *)callbackID withMessage:(NSString *)message
+{
+    CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];
+    [self.commandDelegate sendPluginResult:commandResult callbackId:callbackID];
+}
+
+- (void)failWithCallbackID:(NSString *)callbackID withError:(NSError *)error
+{
+    [self failWithCallbackID:callbackID withMessage:[error localizedDescription]];
+}
+
+- (void)failWithCallbackID:(NSString *)callbackID withMessage:(NSString *)message
+{
+    CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:message];
+    [self.commandDelegate sendPluginResult:commandResult callbackId:callbackID];
+}
+
 
 @end

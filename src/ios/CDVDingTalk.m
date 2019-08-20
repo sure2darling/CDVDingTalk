@@ -7,6 +7,10 @@
 // 初始化插件注册
 - (void)pluginInitialize {
     [DTOpenAPI registerApp:@"dingoallfvu56vmxbf8dgn"];
+     NSString* appId = [[self.commandDelegate settings] objectForKey:@"dingoallfvu56vmxbf8dgn"];
+        if (appId){
+            [DTOpenAPI registerApp: appId];
+        }
 }
 // 打开钉钉
 - (void)openDingTalk:(CDVInvokedUrlCommand*)command
@@ -139,3 +143,4 @@
 }
 
 @end
+

@@ -13,8 +13,8 @@ var exports = {
     shareWebToDingTalk: function (arg0, success, error) {
         exec(success, error, 'CDVDingTalk', 'shareWebToDingTalk', [arg0]);
     },
-    ssoWithDingTalk: function (arg0, success, error) {
-        exec(success, error, 'CDVDingTalk', 'ssoWithDingTalk', [arg0]);
+    ssoWithDingTalk: function (onSuccess, onError) {
+        return exec(onSuccess, onError, "CDVDingTalk", "ssoWithDingTalk");
     },
 };
 

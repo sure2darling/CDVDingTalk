@@ -3,6 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-dingtalk</name>
 
+    <preference name="DINGTALKAPPID" />
+    
     <js-module name="CDVDingTalk" src="www/CDVDingTalk.js">
         <clobbers target="CDVDingTalk"/>
     </js-module>
@@ -13,6 +15,7 @@
                 <param name="ios-package" value="CDVDingTalk"/>
                 <param name="onload" value="true" />
             </feature>
+            <preference name="DINGTALKAPPID" value="$DINGTALKAPPID"/>
         </config-file>
 
         <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
@@ -39,7 +42,7 @@
                     <string>dingtalk</string>
                     <key>CFBundleURLSchemes</key>
                     <array>
-                        <string>dingoallfvu56vmxbf8dgn</string>
+                        <string>$DINGTALKAPPID</string>
                     </array>
                 </dict>
             </array>
